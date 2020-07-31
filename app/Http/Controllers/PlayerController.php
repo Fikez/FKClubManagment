@@ -14,7 +14,9 @@ class PlayerController extends Controller
      */
     public function index()
     {
-        //
+        $players = Player::all();
+        return view("players.index")->with("players",$players);
+
     }
 
     /**
@@ -24,7 +26,7 @@ class PlayerController extends Controller
      */
     public function create()
     {
-        //
+        return view("players.create");
     }
 
     /**
@@ -35,7 +37,30 @@ class PlayerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+       $request->validate([
+
+           "name" => "required",
+            "birthday" => "required",
+            "country" => "required",
+            "position" => "required",
+            "height" => "required",
+            "date_joined" => "required",
+            "career" => "required",
+            "email" => "required",
+       ]);
+       $player=new Player;
+       $player->name = $request->name;
+       $player->birthday = $request->birthday;
+       $player->country = $request->country;
+       $player->position = $request->position;
+       $player->height = $request->height;
+       $player->date_joined = $request->date_joined;
+       $player->career = $request->career;
+       $player->email = $request->email;
+       $player->save();
+       return redirect('/players');
+
     }
 
     /**
@@ -46,7 +71,9 @@ class PlayerController extends Controller
      */
     public function show(Player $player)
     {
-        //
+
+        return view("players.show")->with("player",$player);
+
     }
 
     /**
@@ -57,7 +84,7 @@ class PlayerController extends Controller
      */
     public function edit(Player $player)
     {
-        //
+        return view("players.edit")->with("player",$player);
     }
 
     /**
@@ -69,7 +96,28 @@ class PlayerController extends Controller
      */
     public function update(Request $request, Player $player)
     {
-        //
+
+        $request->validate([
+
+            "name" => "required",
+             "birthday" => "required",
+             "country" => "required",
+             "position" => "required",
+             "height" => "required",
+             "date_joined" => "required",
+             "career" => "required",
+             "email" => "required",
+        ]);
+        $player->name = $request->name;
+        $player->birthday = $request->birthday;
+        $player->country = $request->country;
+        $player->position = $request->position;
+        $player->height = $request->height;
+        $player->date_joined = $request->date_joined;
+        $player->career = $request->career;
+        $player->email = $request->email;
+        $player->save();
+        return redirect('/players');
     }
 
     /**
@@ -80,6 +128,8 @@ class PlayerController extends Controller
      */
     public function destroy(Player $player)
     {
-        //
+
+        $player->delete();
+        return redirect('/players');
     }
 }

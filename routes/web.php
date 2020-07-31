@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::resource("/players","PlayerController")->name("*","players");
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

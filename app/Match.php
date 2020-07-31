@@ -4,8 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Club extends Model
+class Match extends Model
 {
-    
-    protected $guarded = [];
+    protected $guarded =[];
+    //
 }
